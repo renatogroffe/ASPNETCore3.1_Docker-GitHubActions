@@ -18,7 +18,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         login-server: ${{ secrets.DOCKER_CONTAINER_REGISTRY }}
 
-    - name: Build e Push no Azure Container Registry
+    - name: Build e Push no Azure Container Registry - Azure Tech Nights
       run: |
         docker build . --file Dockerfile --tag ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/apicontagem:latest
         docker tag ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/apicontagem:latest ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/apicontagem-b2w:$(date +%s)
