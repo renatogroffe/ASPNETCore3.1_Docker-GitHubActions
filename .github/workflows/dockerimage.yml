@@ -21,5 +21,5 @@ jobs:
     - name: Build e Push no Azure Container Registry - Azure Tech Nights
       run: |
         docker build . --file Dockerfile --tag ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/apicontagem:latest
-        docker tag ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/apicontagem:latest ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/apicontagem-b2w:$(date +%s)
+        docker tag ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/apicontagem:latest ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/apicontagem:$(date +%s)
         docker push ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/apicontagem
