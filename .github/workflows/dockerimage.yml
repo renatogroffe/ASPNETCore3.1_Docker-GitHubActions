@@ -11,25 +11,14 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Docker Login - Azure Container Registry
+    - name: Docker Login - Docker Hub
       uses: Azure/docker-login@v1
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        login-server: ${{ secrets.DOCKER_CONTAINER_REGISTRY }}
 
-    - name: Build e Push no Azure Container Registry - Azure Tech Nights
+    - name: Build e Push no Docker Hub
       run: |
-        docker build . --file Dockerfile --tag ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/apicontagem:latest
-        docker tag ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/apicontagem:latest ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/apicontagem:$(date +%s)
-        docker push ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/apicontagem
-
-    - uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - name: Deployment no Azure WebApp Container
-      uses: Azure/webapps-container-deploy@v1
-      with:
-        app-name: groffe-aztechnights
-        images: ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/apicontagem:latest
+        docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/teste:latest
+        docker tag ${{ secrets.DOCKER_USERNAME }}/teste:latest ${{ secrets.DOCKER_USERNAME }}/teste:$(date +%s)
+        docker push ${{ secrets.DOCKER_USERNAME }}/teste
