@@ -33,5 +33,5 @@ jobs:
     - name: Azure WebApp Container - Deployment da Aplicacao
       uses: Azure/webapps-container-deploy@v1
       with:
-        app-name: groffeapidocker
+        app-name: groffeapidocker2
         images: ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/apicanaldoleo:latest
