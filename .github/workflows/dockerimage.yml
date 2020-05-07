@@ -24,3 +24,14 @@ jobs:
         docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/apicanaldoleo:latest
         docker tag ${{ secrets.DOCKER_USERNAME }}/apicanaldoleo:latest ${{ secrets.DOCKER_USERNAME }}/apicanaldoleo:$(date +%s)
         docker push ${{ secrets.DOCKER_USERNAME }}/apicanaldoleo
+
+    - name: Logando no Azure para Deployment
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Azure WebApp Container - Deployment da Aplicacao
+      uses: Azure/webapps-container-deploy@v1
+      with:
+        app-name: groffeapidocker
+        images: ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/apicontagem:latest
