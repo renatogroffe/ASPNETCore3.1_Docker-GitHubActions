@@ -34,4 +34,4 @@ jobs:
       uses: Azure/webapps-container-deploy@v1
       with:
         app-name: groffeapidocker
-        images: ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/apicontagem:latest
+        images: ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/apicanaldoleo:latest
